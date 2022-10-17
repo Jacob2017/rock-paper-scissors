@@ -10,7 +10,7 @@ function capitalise(text) {
 }
 
 function playRound(playerSelection, computerSelection) {
-  playerSelection = capitalise(playerSelection);
+  // playerSelection = capitalise(playerSelection);
   const player = playerSelection.toLowerCase();
   const computer = computerSelection.toLowerCase();
 
@@ -23,34 +23,69 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  console.log("Welcome to RPS!");
-  let playerInput, computerInput, result, score;
-  score = [0,0];
+let playerInput, computerInput, result, score;
 
-  for (let i = 0; i < 5; i++) {
-    let playerInput = prompt("Rock, Paper, Scissors?");
-    let computerInput = getComputerChoice();
-    let result = playRound(playerInput,computerInput);
+const btns = document.querySelectorAll('button');
+const resDiv = document.querySelector('.result');
+const compDiv = document.querySelector('.computer');
+const pScore = document.querySelector('.score1');
+const cScore = document.querySelector('.score2');
 
-    console.log(result)
-    if (result.charAt(0) == "D") {
+score = [0,0];
+
+btns.forEach(addEventListener('click', (e) => {
+  if (e.target.localName !== 'button') {
+    return;
+  }
+  playerInput = e.target.textContent;
+  computerInput = getComputerChoice();
+  compDiv.textContent = "Computer Choice: " + computerInput;
+  console.log(playerInput, computerInput)
+  result = playRound(playerInput,computerInput);
+  resDiv.textContent = result;
+
+  if (result.charAt(0) == "D") {
     } else if (result.split(" ")[1].charAt(0) == "w") {
       score[0] += 1;
     } else {
       score[1] += 1;
     }
-    console.log("Score is " + score[0] + " - " + score[1]);
-  }
   
-  if (score[0] == score[1]) {
-    console.log("You DREW! " + score[0] + " all!")
-  } else if (score[0] > score[1]) {
-    console.log("You WON! " + score[0] + " - " + score[1]);
-  } else {
-    console.log("You LOST! " + score[1] + " - " + score[0]);
-  }
-}
+}))
+
+
+
+
+
+
+// function game() {
+//   console.log("Welcome to RPS!");
+//   let playerInput, computerInput, result, score;
+//   score = [0,0];
+
+  
+//   let playerInput = prompt("Rock, Paper, Scissors?");
+//   let computerInput = getComputerChoice();
+//   let result = playRound(playerInput,computerInput);
+
+//   console.log(result)
+//   if (result.charAt(0) == "D") {
+//   } else if (result.split(" ")[1].charAt(0) == "w") {
+//     score[0] += 1;
+//   } else {
+//     score[1] += 1;
+//   }
+//   console.log("Score is " + score[0] + " - " + score[1]);
+  
+  
+//   if (score[0] == score[1]) {
+//     console.log("You DREW! " + score[0] + " all!")
+//   } else if (score[0] > score[1]) {
+//     console.log("You WON! " + score[0] + " - " + score[1]);
+//   } else {
+//     console.log("You LOST! " + score[1] + " - " + score[0]);
+//   }
+// }
 
 
 
