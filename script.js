@@ -30,11 +30,12 @@ const resDiv = document.querySelector('.result');
 const compDiv = document.querySelector('.computer');
 const pScore = document.querySelector('.score1');
 const cScore = document.querySelector('.score2');
+const welcome = document.querySelector('.welcome');
 
 score = [0,0];
 
 btns.forEach(addEventListener('click', (e) => {
-  if (e.target.localName !== 'button') {
+  if (e.target.localName !== 'button' || score[0] >= 5 || score[1] >= 5) {
     return;
   }
   playerInput = e.target.textContent;
@@ -47,49 +48,16 @@ btns.forEach(addEventListener('click', (e) => {
   if (result.charAt(0) == "D") {
     } else if (result.split(" ")[1].charAt(0) == "w") {
       score[0] += 1;
+      pScore.textContent = "Your Score: " + score[0];
     } else {
       score[1] += 1;
+      cScore.textContent = "Computer Score: " + score[1];
     }
+  if (score[0] == 5) {
+    welcome.textContent = "Game Over! You Win!";
+  } else if (score[1] == 5) {
+    welcome.textContent = "Game Over! You Lose!";
+  }
   
 }))
 
-
-
-
-
-
-// function game() {
-//   console.log("Welcome to RPS!");
-//   let playerInput, computerInput, result, score;
-//   score = [0,0];
-
-  
-//   let playerInput = prompt("Rock, Paper, Scissors?");
-//   let computerInput = getComputerChoice();
-//   let result = playRound(playerInput,computerInput);
-
-//   console.log(result)
-//   if (result.charAt(0) == "D") {
-//   } else if (result.split(" ")[1].charAt(0) == "w") {
-//     score[0] += 1;
-//   } else {
-//     score[1] += 1;
-//   }
-//   console.log("Score is " + score[0] + " - " + score[1]);
-  
-  
-//   if (score[0] == score[1]) {
-//     console.log("You DREW! " + score[0] + " all!")
-//   } else if (score[0] > score[1]) {
-//     console.log("You WON! " + score[0] + " - " + score[1]);
-//   } else {
-//     console.log("You LOST! " + score[1] + " - " + score[0]);
-//   }
-// }
-
-
-
-// console.log(playRound("ROCK",getComputerChoice()));
-// console.log(capitalise("ASDLJASLDJ"))
-
-game()
